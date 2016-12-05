@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.container {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.js-search-form {
+    margin: 30px;
+}
+
+/*
+.js-search-results li {
+    padding: 10px 0;
+    border-bottom: 1px gray dotted;
+    list-style: none;
+    overflow: auto;
+}
+*/
