@@ -6,18 +6,36 @@
     <meta name="viewport" content="width=device-width">
     <title>JS Bin</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="main.css"> 
+    <style>
+    /* Always set the map height explicitly to define the size of the div * element that contains the map. */ 
+    #map {
+        height: 100%;
+    } 
+    /* Optional: Makes the sample page fill the window. */ 
+    html,
+    body { 
+        height: 100%; margin: 0; padding: 0;
+    }
+    .map-display { 
+        height: 100%; margin: 0; padding: 0;
+    }
+    </style>
 </head>
 
 <body>
     <div class="container">
+    <section class="search-section">
         <h1>(App Name)</h1>
         <h3>Find Events Happening Near You!</h3>
         <form action="#" class="js-search-form">
-            <label for="query">Where are you?</label><br>
-            <input type="text" class="js-query" placeholder="city"><br>
-            <input type="text" class="js-query" placeholder="state"><br>
-            <div class="form-group">
+            <label for="query">Where are you?</label>
+            <br>
+            <input type="text" class="js-query js-city" placeholder="enter a city">
+            <br>
+            <input type="text" class="js-query js-state" placeholder="enter a state">
+            <br>
+            <!--<div class="form-group">
                 <label for="sel1">Select Event Type</label><br>
                 <select class="form-control" id="sel1">
                     <option>Live Music</option>
@@ -25,14 +43,19 @@
                     <option>Sports</option>
                     <option>Festivals</option>
                 </select>
-            </div>
+            </div>-->
             <button type="submit" class="search-button js-search-button">Find Events</button>
         </form>
-        <!--<div class="js-search-results">
-        </div>-->
+        <div class="js-search-results">
+        </div>
+        </section>
+        <section class="map-display">
+        <div id="map"></div>
+        </section>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJ9gDoSqlXHMx37gktf5teZPYoDU5H79w&callback=initMap" async defer></script>
 </body>
 
 </html>

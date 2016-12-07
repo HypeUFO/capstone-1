@@ -16,6 +16,11 @@ body {
     margin: 30px;
 }
 
+.search-button {
+    margin: 10px;
+}
+
+
 /*
 .js-search-results li {
     padding: 10px 0;
@@ -24,3 +29,17 @@ body {
     overflow: auto;
 }
 */
+
+/*#map {
+    height: 100%;
+}*/
+
+
+/* Optional: Makes the sample page fill the window. */
+/*
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}*/
