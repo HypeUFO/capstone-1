@@ -43,3 +43,97 @@ header {
 
 }
 
+.map-container {
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    border: 3px solid gray;
+}
+
+
+.search-section {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    width: 300px;
+    margin: 60px auto 0;
+    padding: 10px;
+    background: gray;
+    height: auto;
+    opacity: .8;
+    color: white;
+}
+
+
+.js-search-form {
+    margin: 30px;
+}
+
+.js-city {
+    margin-top: 3px;
+}
+.search-button {
+    margin: 10px;
+}
+
+.search-button:hover,
+.new-search-button:hover {
+    box-shadow: 2px 2px 5px black;
+}
+
+.search-button:active,
+.new-search-button:active {
+    transform: translateY(1px);
+}
+
+
+.js-search-results {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    height: 100%;
+    color: black;
+    background: white;
+    opacity: .8;
+    border: 3px solid gray;
+    width: 30%;
+    overflow: auto;
+    float: right;
+}
+
+.js-search-results li {
+    padding: 10px 0;
+    border-bottom: 1px gray dotted;
+    list-style: none;
+    /*overflow: auto;*/
+}
+
+.list-left {
+    float: left;
+    width: 20%;
+}
+
+.list-left img {
+    width: 100%;
+    padding: 3px;
+    border: 1px #ccc solid;
+}
+
+.list-right {
+    float: right;
+    width: 78%;
+    padding: 3px;
+}
+
+.hide {
+    display: none;
+}

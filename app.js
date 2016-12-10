@@ -36,7 +36,7 @@ function getDataFromAPI() {
             q: "music concert",
             l: l,
             t: "Today",
-            page_size: 5,
+            page_size: 25,
             sort_order: "popularity",
             category: "music, concert"
 
