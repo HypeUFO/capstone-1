@@ -1,26 +1,23 @@
 // Variables
 
-var map;
-
 
 var l = $('.js-city').val() + " " + $('.js-state').val();
 
 
-var date = (new Date()).toString().split(' ').splice(1, 3).join(' ');
+/*var date = (new Date()).toString().split(' ').splice(1, 3).join(' ');
 
-document.write(date)
+document.write(date)*/
 
 // Initialize Map
+var map;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.397, lng: 150.644 },
-        zoom: 8
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 }
-
-
-// Search and API Request
 
 function getDataFromAPI() {
     // Clear Results
@@ -32,80 +29,97 @@ function getDataFromAPI() {
 
     // Run GET Request on API
     $.ajax({
-            url: "http://api.eventful.com/json/events/search",
-            type: "GET",
-            data: {
-                app_key: "tFtdmL78mXSFFmd6",
-                q: "music",
-                l: l,
-                t: date,
-                crossDomain: true
-            },
-
-            headers: {
-                //"Origin": "localhost",
-                "Access-Control-Allow-Origin": "*"
-            }
-            //dataType: 'json'
+        url: "http://api.eventful.com/json/events/search",
+        type: "GET",
+        data: {
+            app_key: "tFtdmL78mXSFFmd6",
+            q: "music concert",
+            l: l,
+            t: "Today",
+            page_size: 5,
+            sort_order: "popularity",
+            category: "music, concert"
 
         },
+        crossDomain: true,
+        dataType: 'jsonp'
+    }).then(function(data) {
+        // Log Data
+        console.log(data.events);
 
-        function(data) {
-            // Log Data
-            console.log(data);
+        $.each(data.events.event, function(i, item) {
+            // Get Output
+            var output = getOutput(item);
 
-            $.each(data.items, function(i, item) {
-                // Get Output
-                var output = getOutput(item);
+            // Display Results
+            $('.js-search-results').append(output);
+        });
 
-                // Display Results
-                $('.js-search-results').append(output);
-            });
-
-        }
-    );
+    });
 }
+
+function convert(input) {
+    return moment(input, 'HH:mm:ss').format('h:mm A');
+}
+
 
 //Render Functions
 
 //Build Output
+
 function getOutput(item) {
     var eventID = item.id;
     var title = item.title;
-    var eventUrl = item.url;
+    var eventURL = item.url;
+    var eventImage = item.image.medium.url;
     var description = item.description;
-    var eventStart = item.start_time;
+    var eventStart = convert(item.start_time);
     var venueName = item.venue_name;
-    var venueAddress = item.venue_address;
+    var venueAddress = item.venue_address + ", " + item.city_name + " " + item.region_abbr;
+    //+ " " + item.postal_code;
     var venueURL = item.venue_url;
+    var eventLat = item.latitude;
+    var eventLng = item.longitude;
 
 
     // Build Output String
 
     var output = `<li>
   <div class="list-left">
-  <a href="http://eventful.com/events?url=${eventUrl}">
-  </a>
-  <a href="http://eventful.com/events?venue_url=${venueURL}">
-  </a>
+  <img src="${eventImage}" alt="Event Image">
   </div>
-  <div class="list-right"> 
-  <h2>${title}</h2>
-  <h3>${venueName}</h3>
-  <h3>${venueAddress}</h3>
-  <small>${eventStart}</small>
-  <p>${description}</p>
+  <div class+"list-right">
+  <p>${title}<br>
+  ${venueName}<br>
+  ${venueAddress}<br>
+  ${eventStart}
+  </p>
   </div>
   </li>
   <div class="clearfix"></div>`;
 
-
     return output;
+}
+
+function handleSearchToggle() {
+    $('.js-search-button').on('click', function() {
+        $('.js-search-results').show(500);
+        $('.search-section').hide();
+        $('.new-search').show(500);
+    });
+    $('.js-new-search-button').on('click', function() {
+        $('.new-search').hide(500);
+        $('.search-section').show(500);
+    });
+
 }
 
 
 
 $('document').ready(function() {
+
     //searchFormAnimations();
     $('.js-search-button').on('click', getDataFromAPI);
+    handleSearchToggle();
+
 })

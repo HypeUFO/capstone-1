@@ -2,44 +2,44 @@
     box-sizing: border-box;
 }
 
-body {
-    padding-top: 50px;
-    text-align: center;
-}
-
-.container {
-    margin: 0 auto;
-    width: 70%;
-}
-
-.js-search-form {
-    margin: 30px;
-}
-
-.search-button {
-    margin: 10px;
-}
-
-
-/*
-.js-search-results li {
-    padding: 10px 0;
-    border-bottom: 1px gray dotted;
-    list-style: none;
-    overflow: auto;
-}
-*/
-
-/*#map {
-    height: 100%;
-}*/
-
-
-/* Optional: Makes the sample page fill the window. */
-/*
 html,
 body {
     height: 100%;
     margin: 0;
     padding: 0;
-}*/
+}
+
+body {
+    padding-top: 0px;
+    text-align: center;
+}
+
+header {
+    height: auto;
+    margin-top: 0px;
+}
+
+.new-search {
+    position: absolute;
+    z-index: 1;
+    height: 50px;
+    width: 100%;
+    background: white;
+    opacity: .8;
+    margin: 0 auto;
+    padding-top: 4px;
+}
+
+.new-search-button {
+    height: 90%;
+    border: 3px solid gray;
+}
+
+.container {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    padding-top: 51px;
+
+}
+
