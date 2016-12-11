@@ -23,9 +23,9 @@
             <form action="#" class="js-search-form">
                 <label for="query">Where are you?</label>
                 <br>
-                <input type="text" class="js-query js-city" placeholder="enter a city">
+                <input type="text" id="js-city" class="js-query" placeholder="enter a city">
                 <br>
-                <input type="text" class="js-query js-state" placeholder="enter a state">
+                <input type="text" id="js-state" class="js-query" placeholder="enter a state">
                 <br>
                 <!--<div class="form-group">
                 <label for="sel1">Select Event Type</label><br>
@@ -36,7 +36,7 @@
                     <option>Festivals</option>
                 </select>
             </div>-->
-                <button type="submit" class="search-button js-search-button">Find Events</button>
+                <button type="submit" class="search-button js-search-button" value="Encode" onclick="codeAddress()">Find Events</button>
             </form>
         </section>
         <section class="js-search-results hide">

@@ -40,7 +40,6 @@ header {
     height: 100%;
     width: 100%;
     padding-top: 51px;
-
 }
 
 .map-container {
@@ -59,7 +58,6 @@ header {
     border: 3px solid gray;
 }
 
-
 .search-section {
     position: relative;
     display: inline-block;
@@ -73,7 +71,6 @@ header {
     color: white;
 }
 
-
 .js-search-form {
     margin: 30px;
 }
@@ -81,6 +78,7 @@ header {
 .js-city {
     margin-top: 3px;
 }
+
 .search-button {
     margin: 10px;
 }
@@ -94,7 +92,6 @@ header {
 .new-search-button:active {
     transform: translateY(1px);
 }
-
 
 .js-search-results {
     position: relative;
@@ -120,6 +117,7 @@ header {
 .list-left {
     float: left;
     width: 20%;
+    height: 100%;
 }
 
 .list-left img {

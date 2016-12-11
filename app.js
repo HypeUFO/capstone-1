@@ -9,15 +9,36 @@ var l = $('.js-city').val() + " " + $('.js-state').val();
 document.write(date)*/
 
 // Initialize Map
-var map;
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+  var geocoder;
+  var map;
+
+  function initMap() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng
+    }
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  }
+
+  function codeAddress() {
+    var address = document.getElementById('js-city').value + document.getElementById('js-state').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
     });
-}
+  }
+
+// Get Data From Eventful API
 
 function getDataFromAPI() {
     // Clear Results
@@ -25,7 +46,7 @@ function getDataFromAPI() {
     $('.js-buttons').html('');
 
     // Get Form Input
-    var l = $('.js-city').val() + " " + $('.js-state').val();
+    var l = $('#js-city').val() + " " + $('#js-state').val();
 
     // Run GET Request on API
     $.ajax({
