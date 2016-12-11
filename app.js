@@ -17,7 +17,7 @@ document.write(date)*/
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(-34.397, 150.644);
     var mapOptions = {
-      zoom: 8,
+      zoom: 0,
       center: latlng
     }
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -28,6 +28,7 @@ document.write(date)*/
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
+        map.setZoom(8);
         var marker = new google.maps.Marker({
             map: map,
             position: results[0].geometry.location
@@ -125,11 +126,12 @@ function getOutput(item) {
 function handleSearchToggle() {
     $('.js-search-button').on('click', function() {
         $('.js-search-results').show(500);
-        $('.search-section').hide();
+        $('.search-section').hide(500);
         $('.new-search').show(500);
+        $('.new-search-button').show(500);
     });
     $('.js-new-search-button').on('click', function() {
-        $('.new-search').hide(500);
+        $('.new-search-button').hide(500);
         $('.search-section').show(500);
     });
 

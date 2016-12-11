@@ -27,7 +27,8 @@ header {
     background: white;
     opacity: .8;
     margin: 0 auto;
-    padding-top: 4px;
+    padding-top: 5px;
+    border-bottom: 3px solid gray;
 }
 
 .new-search-button {
@@ -39,13 +40,14 @@ header {
     margin: 0 auto;
     height: 100%;
     width: 100%;
-    padding-top: 51px;
+    padding-top: 47px;
 }
 
 .map-container {
     z-index: 0;
     height: 100%;
     width: 100%;
+
 }
 
 #map {
@@ -56,6 +58,7 @@ header {
     left: 0;
     z-index: 0;
     border: 3px solid gray;
+    
 }
 
 .search-section {
@@ -63,12 +66,14 @@ header {
     display: inline-block;
     z-index: 1;
     width: 300px;
-    margin: 60px auto 0;
+    /*margin: 60px auto 0;*/
+    /*margin: 111px auto 0;*/
+    margin: 108px auto 0;
     padding: 10px;
     background: gray;
-    height: auto;
-    opacity: .8;
     color: white;
+    height: auto;
+    opacity: .8; 
 }
 
 .js-search-form {
@@ -96,6 +101,7 @@ header {
 .js-search-results {
     position: relative;
     display: inline-block;
+    /*margin-top: 47px;*/
     z-index: 1;
     height: 100%;
     color: black;
