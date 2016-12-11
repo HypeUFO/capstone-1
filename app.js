@@ -23,7 +23,7 @@ document.write(date)*/
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
   }
 
-  function codeAddress() {
+  /*function codeAddress() {
     var address = document.getElementById('js-city').value + document.getElementById('js-state').value;
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
@@ -38,7 +38,7 @@ document.write(date)*/
       }
     });
   }
-
+*/
 // Get Data From Eventful API
 
 function getDataFromAPI() {
@@ -66,6 +66,41 @@ function getDataFromAPI() {
         crossDomain: true,
         dataType: 'jsonp'
     }).then(function(data) {
+      console.log(data.events);
+      // Creating a global infoWindow object that will be reused by all markers
+      var infoWindow = new google.maps.InfoWindow();
+      $.each(data.events.event, function(i, item) {
+    var address = item.venue_address;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        map.setZoom(10);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+      (function(marker, data) {
+
+        // Attaching a mouseover event to the current marker
+        google.maps.event.addListener(marker, "mouseover", function(e) {
+          infoWindow.setContent('<div><strong>' + item.title + '</strong><br>' + '<strong> @' + item.venue_name + '</strong><br>' + item.description + '</div>');
+          infoWindow.open(map, marker);
+
+          
+        });
+
+
+      })(marker, data);
+
+      google.maps.event.addListener(marker, "mouseout", function(e) {
+          infoWindow.close();
+        });
+
+    });
+  }).then(function(data) {
         // Log Data
         console.log(data.events);
 
@@ -77,7 +112,8 @@ function getDataFromAPI() {
             $('.js-search-results').append(output);
         });
 
-    });
+    })
+  })
 }
 
 function convert(input) {
