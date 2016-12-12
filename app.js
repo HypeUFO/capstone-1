@@ -46,6 +46,7 @@ function initMap() {
 // Get Data From Eventful API
 
 function getDataFromAPI() {
+  $(".loader").show();
     // Clear Results
     $('.js-search-results').html('');
     $('.js-buttons').html('');
@@ -70,6 +71,7 @@ function getDataFromAPI() {
         crossDomain: true,
         dataType: 'jsonp'
     }).then(function(data) {
+      $(".loader").fadeOut("slow");
         // Log Data
         console.log(data.events);
 
@@ -142,7 +144,7 @@ function buildMap(item) {
     geocoder.geocode({ 'address': address }, function(results, status) {
         if (status == 'OK') {
             map.setCenter(results[0].geometry.location);
-            map.setZoom(9);
+            map.setZoom(10);
             var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
@@ -153,13 +155,13 @@ function buildMap(item) {
         (function(marker, item) {
             // Attaching a click event to the current marker
             google.maps.event.addListener(marker, "click", function(e) {
-                infoWindow.setContent(`<div><strong>${item.title}</strong><br><strong>@${item.venue_name}</strong><br>${item.description}</div>`);
+                infoWindow.setContent(`<div><strong>${item.title}</strong><br><strong>@${item.venue_name}</strong><br>${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}<br>${item.description}</div>`);
                 infoWindow.open(map, marker);
             });
         (marker, item);
             // Attaching a mouseover event to the current marker
             google.maps.event.addListener(marker, "mouseover", function(e) {
-                infoWindow.setContent(`<div><strong>${item.title}</strong><br><strong>@${item.venue_name}</strong><br></div>`);
+                infoWindow.setContent(`<div><strong>${item.title}</strong><br><strong>@${item.venue_name}</strong><br>${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}</div>`);
                 infoWindow.open(map, marker);
             });
         })(marker, item);
@@ -168,6 +170,7 @@ function buildMap(item) {
         });
     });
 }
+
 
 // Show/Hide Search Form
 
@@ -189,9 +192,13 @@ function handleSearchToggle() {
 // Execute
 
 $('document').ready(function() {
-
+  $(window).load(function() {
+        $(".loader").fadeOut("slow");
+    })
     //searchFormAnimations();
     $('.js-search-button').on('click', getDataFromAPI);
     handleSearchToggle();
 
 })
+
+
