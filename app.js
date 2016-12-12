@@ -1,7 +1,8 @@
 // Variables
 
 
-var l = $('.js-city').val() + " " + $('.js-state').val();
+
+//var l = $('.js-city').val() + " " + $('.js-state').val();
 
 
 /*var date = (new Date()).toString().split(' ').splice(1, 3).join(' ');
@@ -10,22 +11,24 @@ document.write(date)*/
 
 // Initialize Map
 
-  var geocoder;
-  var map;
+var geocoder;
+var map;
 
-  function initMap() {
+function initMap() {
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(-34.397, 150.644);
     var mapOptions = {
-      zoom: 0,
-      center: latlng
+        zoom: 0,
+        center: latlng
     }
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
-  }
+}
 
-  /*function codeAddress() {
-    var address = document.getElementById('js-city').value + document.getElementById('js-state').value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
+/*function codeAddress() {
+  var infoWindow = new google.maps.InfoWindow();
+
+            var address = item.venue_address + " " + item.city_name + " " + item.region_abbr;
+            geocoder.geocode({ 'address': address }, function(results, status) {
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
         map.setZoom(8);
@@ -39,6 +42,7 @@ document.write(date)*/
     });
   }
 */
+
 // Get Data From Eventful API
 
 function getDataFromAPI() {
@@ -66,54 +70,21 @@ function getDataFromAPI() {
         crossDomain: true,
         dataType: 'jsonp'
     }).then(function(data) {
-      console.log(data.events);
-      // Creating a global infoWindow object that will be reused by all markers
-      var infoWindow = new google.maps.InfoWindow();
-      $.each(data.events.event, function(i, item) {
-    var address = item.venue_address;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == 'OK') {
-        map.setCenter(results[0].geometry.location);
-        map.setZoom(10);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-      (function(marker, data) {
-
-        // Attaching a mouseover event to the current marker
-        google.maps.event.addListener(marker, "mouseover", function(e) {
-          infoWindow.setContent('<div><strong>' + item.title + '</strong><br>' + '<strong> @' + item.venue_name + '</strong><br>' + item.description + '</div>');
-          infoWindow.open(map, marker);
-
-          
-        });
-
-
-      })(marker, data);
-
-      google.maps.event.addListener(marker, "mouseout", function(e) {
-          infoWindow.close();
-        });
-
-    });
-  }).then(function(data) {
         // Log Data
         console.log(data.events);
 
         $.each(data.events.event, function(i, item) {
             // Get Output
             var output = getOutput(item);
+            var map = buildMap(item);
 
             // Display Results
             $('.js-search-results').append(output);
-        });
+            $('#map').html(map);
 
+
+        });
     })
-  })
 }
 
 function convert(input) {
@@ -122,6 +93,7 @@ function convert(input) {
 
 
 //Render Functions
+
 
 //Build Output
 
@@ -159,6 +131,46 @@ function getOutput(item) {
     return output;
 }
 
+
+// Build Map
+
+function buildMap(item) {
+    // Creating a global infoWindow object that will be reused by all markers
+    var infoWindow = new google.maps.InfoWindow();
+
+    var address = item.venue_address + " " + item.city_name + " " + item.region_abbr;
+    geocoder.geocode({ 'address': address }, function(results, status) {
+        if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            map.setZoom(9);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+        (function(marker, item) {
+            // Attaching a click event to the current marker
+            google.maps.event.addListener(marker, "click", function(e) {
+                infoWindow.setContent(`<div><strong>${item.title}</strong><br><strong>@${item.venue_name}</strong><br>${item.description}</div>`);
+                infoWindow.open(map, marker);
+            });
+        (marker, item);
+            // Attaching a mouseover event to the current marker
+            google.maps.event.addListener(marker, "mouseover", function(e) {
+                infoWindow.setContent(`<div><strong>${item.title}</strong><br><strong>@${item.venue_name}</strong><br></div>`);
+                infoWindow.open(map, marker);
+            });
+        })(marker, item);
+        google.maps.event.addListener(marker, "mouseout", function(e) {
+            infoWindow.close();
+        });
+    });
+}
+
+// Show/Hide Search Form
+
 function handleSearchToggle() {
     $('.js-search-button').on('click', function() {
         $('.js-search-results').show(500);
@@ -174,6 +186,7 @@ function handleSearchToggle() {
 }
 
 
+// Execute
 
 $('document').ready(function() {
 

@@ -44,13 +44,14 @@ header {
 }
 
 .map-container {
+
     z-index: 0;
     height: 100%;
     width: 100%;
-
 }
 
 #map {
+    padding-top: 47px;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -58,7 +59,6 @@ header {
     left: 0;
     z-index: 0;
     border: 3px solid gray;
-    
 }
 
 .search-section {
@@ -73,7 +73,7 @@ header {
     background: gray;
     color: white;
     height: auto;
-    opacity: .8; 
+    opacity: .8;
 }
 
 .js-search-form {
@@ -140,4 +140,45 @@ header {
 
 .hide {
     display: none;
+}
+
+.gm-style .gm-style-mtc label,
+.gm-style .gm-style-mtc div {
+    font-weight: 400
+}
+
+.gm-style .gm-style-cc span,
+.gm-style .gm-style-cc a,
+.gm-style .gm-style-mtc div {
+    font-size: 10px
+}
+
+@media print {
+    .gm-style .gmnoprint,
+    .gmnoprint {
+        display: none
+    }
+}
+
+@media screen {
+    .gm-style .gmnoscreen,
+    .gmnoscreen {
+        display: none
+    }
+}
+
+.gm-style {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    text-decoration: none
+}
+
+.gm-style img {
+    max-width: none
+}
+
+.gm-style-iw {
+    max-height: 150px;
+    max-width: 400px;
 }
