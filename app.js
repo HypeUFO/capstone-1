@@ -56,7 +56,7 @@ function getDataFromAPI() {
 
     // Run GET Request on API
     $.ajax({
-        url: "http://api.eventful.com/json/events/search",
+        url: "https://api.eventful.com/json/events/search",
         type: "GET",
         data: {
             app_key: "tFtdmL78mXSFFmd6",
