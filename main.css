@@ -19,6 +19,9 @@ header {
     margin-top: 0px;
 }
 
+.logo {
+    display: inline-block;
+}
 .new-search {
     position: absolute;
     z-index: 1;
@@ -116,7 +119,7 @@ header {
 
 .js-search-results li {
     padding: 10px 0;
-    border-bottom: 2px gray dotted;
+    border-bottom: 2px gray solid;
     list-style: none;
     /*overflow: auto;*/
 }
@@ -193,4 +196,41 @@ header {
     z-index: 2;
     opacity: 0.9;
     background: url('images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
+/* Mobile, grid */
+@media only screen and (max-width: 640px) {
+
+    .js-search-results {
+    width: 100%;
+  }
+
+  #map {
+    display: none;
+  }
+}
+
+/* Non-mobile, grid */
+@media only screen and (min-width: 640px) {
+  /* 3 columns, 3/12 in % */
+  .col-3 {
+    width: 25%;
+  }
+
+  /* 4 columns */
+  .col-4 {
+    width: 33%;
+  }
+
+  /* 6 columns */
+  .col-6 {
+    width: 50%;
+
+  }
+
+  /* 12 columns */
+  .col-12 {
+    width: 100%;
+  }
+
 }

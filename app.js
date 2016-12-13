@@ -71,7 +71,7 @@ function getDataFromAPI() {
         crossDomain: true,
         dataType: 'jsonp'
     }).then(function(data) {
-        $(".loader").fadeOut("slow");
+        $(".loader").hide("fast");
         // Log Data
         console.log(data.events);
 
@@ -122,7 +122,7 @@ function getOutput(item) {
   </div>
   <div class+"list-right">
   <p>${title}<br>
-  ${venueName}<br>
+  <a href="${venueURL}">${venueName}</a><br>
   ${venueAddress}<br>
   ${eventStart}
   </p>
@@ -171,7 +171,7 @@ function buildMap(item) {
         });
         google.maps.event.addListener(marker, "click", function(e) {
             clicked = true;
-            infoWindow.setContent(`<div><strong>${item.title}</strong><br><strong>@${item.venue_name}</strong><br>${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}<br>${item.description}</div>`);
+            infoWindow.setContent(`<div><strong>${item.title}</strong><br><a href="${item.venue_url}"><strong>@${item.venue_name}</strong></a><br>${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}<br>${item.description}</div>`);
             infoWindow.open(map, marker);
         });
         (marker, item);
@@ -188,9 +188,10 @@ function buildMap(item) {
 function handleSearchToggle() {
     $('.js-search-button').on('click', function() {
         $('.js-search-results').show(500);
-        $('.search-section').hide(500);
+        $('.search-section').hide();
         $('.new-search').show(500);
         $('.new-search-button').show(500);
+        $('.logo').show(500);
     });
     $('.js-new-search-button').on('click', function() {
         $('.new-search-button').hide(500);
@@ -207,7 +208,9 @@ $('document').ready(function() {
             $(".loader").fadeOut("slow");
         })
         //searchFormAnimations();
-    $('.js-search-button').on('click', getDataFromAPI);
-    handleSearchToggle();
-
+    $('.js-search-button').on('click', function(event) {
+      event.preventDefault();
+      getDataFromAPI();
+    }).then(handleSearchToggle()
+    );
 })
