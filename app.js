@@ -123,7 +123,7 @@ function getOutput(item) {
   <div class+"list-right">
   <p>${title}<br>
   <a href="${venueURL}">${venueName}</a><br>
-  ${venueAddress}<br>
+  <a href="http://maps.google.com/?q=${venueAddress}">${venueAddress}</a><br>
   ${eventStart}
   </p>
   </div>
@@ -171,7 +171,7 @@ function buildMap(item) {
         });
         google.maps.event.addListener(marker, "click", function(e) {
             clicked = true;
-            infoWindow.setContent(`<div><strong>${item.title}</strong><br><a href="${item.venue_url}"><strong>@${item.venue_name}</strong></a><br>${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}<br>${item.description}</div>`);
+            infoWindow.setContent(`<div><strong>${item.title}</strong><br><a href="${item.venue_url}"><strong>@${item.venue_name}</strong></a><br><a href="http://maps.google.com/?q=${item.venue_address}, ${item.city_name} ${item.region_abbr}">${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}</a><br>${item.description}</div>`);
             infoWindow.open(map, marker);
         });
         (marker, item);
@@ -192,10 +192,13 @@ function handleSearchToggle() {
         $('.new-search').show(500);
         $('.new-search-button').show(500);
         $('.logo').show(500);
+        //$('#map').show();
+        $('.landing').hide(500);
     });
     $('.js-new-search-button').on('click', function() {
         $('.new-search-button').hide(500);
         $('.search-section').show(500);
+        $('.landing').show(500);
     });
 
 }
@@ -211,6 +214,7 @@ $('document').ready(function() {
     $('.js-search-button').on('click', function(event) {
       event.preventDefault();
       getDataFromAPI();
+      //$('#map').show();
     }).then(handleSearchToggle()
     );
 })
