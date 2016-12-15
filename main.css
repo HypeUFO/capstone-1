@@ -26,7 +26,6 @@ header {
     height: 50px;
     width: 100%;
     background: white;
-    /*opacity: .8;*/
     margin: 0 auto;
     padding-top: 5px;
     border-bottom: 3px solid gray;
@@ -42,11 +41,9 @@ header {
     font-weight: bold;
     letter-spacing: 1px;
     color: #f75448;
-    /*text-shadow: -1px 2px gray;*/
 }
 
 .new-search-button {
-    /*margin-left: -230px;*/
     float: right;
     margin-right: 20px;
     padding-top: 5px;
@@ -54,7 +51,6 @@ header {
     background-color: #f75448;
     color: white;
     font-family: 'Roboto', sans-serif;
-    /*border: 3px solid gray;*/
     border-radius: 10px;
 }
 
@@ -73,16 +69,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/*
-.map-container {
-
-    z-index: 0;
-    height: 100%;
-    width: 100%;
-}*/
-
 #map {
-    /*padding-top: 47px;*/
     height: 100%;
     width: 100%;
     position: absolute;
@@ -136,7 +123,6 @@ input {
 .js-search-results {
     position: relative;
     display: inline-block;
-    /*margin-top: 47px;*/
     z-index: 1;
     height: 100%;
     color: black;
@@ -152,7 +138,6 @@ input {
     padding: 10px 0;
     border-bottom: 2px gray solid;
     list-style: none;
-    /*overflow: auto;*/
 }
 
 .list-left {

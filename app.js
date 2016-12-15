@@ -1,14 +1,3 @@
-// Variables
-
-
-
-//var l = $('.js-city').val() + " " + $('.js-state').val();
-
-
-/*var date = (new Date()).toString().split(' ').splice(1, 3).join(' ');
-
-document.write(date)*/
-
 // Initialize Map
 
 var geocoder;
@@ -23,25 +12,6 @@ function initMap() {
     }
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 }
-
-/*function codeAddress() {
-  var infoWindow = new google.maps.InfoWindow();
-
-            var address = item.venue_address + " " + item.city_name + " " + item.region_abbr;
-            geocoder.geocode({ 'address': address }, function(results, status) {
-      if (status == 'OK') {
-        map.setCenter(results[0].geometry.location);
-        map.setZoom(8);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-  }
-*/
 
 // Get Data From Eventful API
 
@@ -212,9 +182,8 @@ $('document').ready(function() {
         })
         //searchFormAnimations();
     $('.js-search-button').on('click', function(event) {
-      event.preventDefault();
-      getDataFromAPI();
-      //$('#map').show();
-    }).then(handleSearchToggle()
-    );
+        event.preventDefault();
+        getDataFromAPI();
+        //$('#map').show();
+    }).then(handleSearchToggle());
 })
