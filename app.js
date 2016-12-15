@@ -1,13 +1,3 @@
-// Variables
-
-
-
-//var l = $('.js-city').val() + " " + $('.js-state').val();
-
-
-/*var date = (new Date()).toString().split(' ').splice(1, 3).join(' ');
-
-document.write(date)*/
 
 // Initialize Map
 
@@ -24,24 +14,6 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 }
 
-/*function codeAddress() {
-  var infoWindow = new google.maps.InfoWindow();
-
-            var address = item.venue_address + " " + item.city_name + " " + item.region_abbr;
-            geocoder.geocode({ 'address': address }, function(results, status) {
-      if (status == 'OK') {
-        map.setCenter(results[0].geometry.location);
-        map.setZoom(8);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-  }
-*/
 
 // Get Data From Eventful API
 
@@ -60,12 +32,12 @@ function getDataFromAPI() {
         type: "GET",
         data: {
             app_key: "tFtdmL78mXSFFmd6",
-            q: "music concert",
+            q: "music",
             l: l,
             t: "Today",
             page_size: 25,
             sort_order: "popularity",
-            category: "music, concert"
+            category: "music, concert, nightlife"
 
         },
         crossDomain: true,
@@ -73,7 +45,7 @@ function getDataFromAPI() {
     }).then(function(data) {
         $(".loader").hide("fast");
         // Log Data
-        console.log(data.events);
+        //console.log(data.events);
 
         $.each(data.events.event, function(i, item) {
             // Get Output
@@ -108,7 +80,6 @@ function getOutput(item) {
     var eventStart = convert(item.start_time);
     var venueName = item.venue_name;
     var venueAddress = item.venue_address + ", " + item.city_name + " " + item.region_abbr;
-    //+ " " + item.postal_code;
     var venueURL = item.venue_url;
     var eventLat = item.latitude;
     var eventLng = item.longitude;
@@ -120,7 +91,7 @@ function getOutput(item) {
   <div class="list-left">
   <img src="${eventImage}" alt="Event Image">
   </div>
-  <div class+"list-right">
+  <div class="list-right">
   <p>${title}<br>
   <a href="${venueURL}">${venueName}</a><br>
   <a href="http://maps.google.com/?q=${venueAddress}">${venueAddress}</a><br>
@@ -144,7 +115,7 @@ function buildMap(item) {
     geocoder.geocode({ 'address': address }, function(results, status) {
         if (status == 'OK') {
             map.setCenter(results[0].geometry.location);
-            map.setZoom(10);
+            map.setZoom(9);
             var marker = new google.maps.Marker({
                 map: map,
                 position: results[0].geometry.location
@@ -153,7 +124,7 @@ function buildMap(item) {
             alert('Geocode was not successful for the following reason: ' + status);
         }
         (function(marker, item) {
-            // Attaching a click event to the current marker
+            
 
             clicked = false;
             // Attaching a mouseover event to the current marker
@@ -169,6 +140,7 @@ function buildMap(item) {
                 infoWindow.close();
             }
         });
+        // Attaching a click event to the current marker
         google.maps.event.addListener(marker, "click", function(e) {
             clicked = true;
             infoWindow.setContent(`<div><strong>${item.title}</strong><br><a href="${item.venue_url}"><strong>@${item.venue_name}</strong></a><br><a href="http://maps.google.com/?q=${item.venue_address}, ${item.city_name} ${item.region_abbr}">${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}</a><br>${item.description}</div>`);
@@ -192,7 +164,6 @@ function handleSearchToggle() {
         $('.new-search').show(500);
         $('.new-search-button').show(500);
         $('.logo').show(500);
-        //$('#map').show();
         $('.landing').hide(500);
     });
     $('.js-new-search-button').on('click', function() {
@@ -203,6 +174,11 @@ function handleSearchToggle() {
 
 }
 
+function handleMap() {
+    $('.js-search-button').on('click', function() {
+        $('#map').show();
+    });
+}
 
 // Execute
 
@@ -210,11 +186,10 @@ $('document').ready(function() {
     $(window).load(function() {
             $(".loader").fadeOut("slow");
         })
-        //searchFormAnimations();
     $('.js-search-button').on('click', function(event) {
       event.preventDefault();
       getDataFromAPI();
-      //$('#map').show();
-    }).then(handleSearchToggle()
-    );
+    }).then(handleSearchToggle()).then(handleMap());
+
+   
 })
