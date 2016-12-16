@@ -45,7 +45,7 @@ function getDataFromAPI() {
     }).then(function(data) {
         $(".loader").hide("fast");
         // Log Data
-        //console.log(data.events);
+        console.log(data.events);
 
         $.each(data.events.event, function(i, item) {
             // Get Output
@@ -112,6 +112,12 @@ function buildMap(item) {
     var infoWindow = new google.maps.InfoWindow();
 
     var address = item.venue_address + " " + item.city_name + " " + item.region_abbr;
+
+    var wait = false;
+
+    if (geocoder) {
+      while (wait) { /* Just wait. This is a nasty way to do it, find a more elaborate one that won't "freeze" the browser. */ };
+
     geocoder.geocode({ 'address': address }, function(results, status) {
         if (status == 'OK') {
             map.setCenter(results[0].geometry.location);
@@ -120,7 +126,12 @@ function buildMap(item) {
                 map: map,
                 position: results[0].geometry.location
             });
-        } else {
+        } /* When geocoding "fails", see if it was because of over quota error: */
+        else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) { 
+  wait = true;
+  setTimeout("wait = false", 250);
+
+       } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
         (function(marker, item) {
@@ -151,7 +162,7 @@ function buildMap(item) {
             clicked = false;
         })
     });
-
+}
 }
 
 
