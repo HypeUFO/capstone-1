@@ -21,8 +21,6 @@ header {
     position: absolute;
     z-index: 1;
     width: 100%;
-    /*background: #981115;*/
-    /*opacity: .8;*/
     border-bottom: 3px solid gray;
 }
 
@@ -31,9 +29,8 @@ header {
     z-index: 1;
     height: 50px;
     width: 100%;
-    /*background: #981115;*/
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('images/club-3.jpeg');
-    /*opacity: .8;*/
+
     margin: 0 auto;
     border-bottom: 3px solid gray;
 }
@@ -54,7 +51,6 @@ header {
 }
 
 .new-search-button {
-    /*margin-left: -230px;*/
     float: right;
     margin-right: 20px;
     margin-top: 3px;
@@ -62,7 +58,6 @@ header {
     background-color: white;
     color: #981115;
     font-family: 'Roboto', sans-serif;
-    /*border: 3px solid gray;*/
     border-radius: 10px;
 }
 
@@ -70,8 +65,6 @@ header {
     margin: 0 auto;
     height: 100%;
     width: 100%;
-    /*padding-top: 47px;*/
-    /*background: #981115;*/
     background: white;
 }
 
@@ -84,14 +77,9 @@ header {
     padding-top: 0px;
     margin-top: 0px;
     background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('images/club-3.jpeg');
-    /*border-left: 3px solid gray;
-    border-right: 3px solid gray;
-    border-bottom: 3px solid gray;
-    border-top: 3px solid gray;*/
 }
 
 .landing > h1 {
-    /*color: #981115;*/
     color: white;
     font-size: 70px;
     letter-spacing: 2px;
@@ -108,7 +96,6 @@ header {
     top: 0;
     left: 0;
     z-index: 0;
-    /*border: 3px solid gray;*/
 }
 
 .search-section {
@@ -118,11 +105,9 @@ header {
     width: 300px;
     margin: 0% auto 0;
     padding: 10px;
-    /*background: white;*/
     color: #981115;
     height: auto;
     opacity: .9;
-    /*border: 10px solid #981115;*/
     border-radius: 10px;
     text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
 }
@@ -132,7 +117,6 @@ h2 {
 }
 
 .js-search-form {
-    /*background: #981115;*/
     margin: 0 auto;
     margin-top: 35px;
 }
@@ -179,8 +163,6 @@ input[type="text"] {
     display: inline-block;
     padding-top: 47px;
     padding-right: 3px;
-    /*margin-top: 47px;*/
-    /*margin-top: 47px;*/
     z-index: 0;
     height: 100%;
     color: black;
@@ -200,7 +182,6 @@ input[type="text"] {
 }
 
 .list-left {
-    /*float: left;*/
     display: inline-block;
     width: 20%;
     height: 100%;
@@ -214,7 +195,6 @@ input[type="text"] {
 
 .list-right {
     display: inline-block;
-    /*float: right;*/
     width: 78%;
     padding: 3px;
 }
@@ -301,7 +281,6 @@ input[type="text"] {
     }
     .js-search-results {
         width: 100%;
-        /*height: 60%;*/
         height: 100%;
         display: none;
         position: static;

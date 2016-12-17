@@ -4,8 +4,88 @@
 		"selected_items":
 		[
 			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"js-s",
+				"js-search-results"
+			],
+			[
+				"handle",
+				"handleList"
+			],
+			[
+				"paddi",
+				"padding-left"
+			],
+			[
+				"backgrou",
+				"background"
+			],
+			[
+				"padd",
+				"padding-right"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"margi",
+				"margin-bottom"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"venue",
+				"venueAddress"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"tex",
+				"text-shadow"
+			],
+			[
+				"In",
+				"InfoWindow"
+			],
+			[
+				"po",
+				"postal_code"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
 				"get",
-				"getCoordinates"
+				"getDataFromAPI"
+			],
+			[
+				"mar",
+				"margin-top"
 			],
 			[
 				"map",
@@ -22,14 +102,6 @@
 			[
 				"search",
 				"searchFormAnimations"
-			],
-			[
-				"padd",
-				"padding"
-			],
-			[
-				"margin",
-				"margin"
 			],
 			[
 				"sear",
@@ -64,10 +136,6 @@
 				"js-search-form"
 			],
 			[
-				"backgrou",
-				"background-color"
-			],
-			[
 				"box-",
 				"box-sizing"
 			],
@@ -76,24 +144,8 @@
 				"form-field"
 			],
 			[
-				"paddi",
-				"padding-bottom"
-			],
-			[
-				"back",
-				"background-size"
-			],
-			[
 				"tran",
 				"transform"
-			],
-			[
-				"padding",
-				"padding-top"
-			],
-			[
-				"marg",
-				"margin"
 			],
 			[
 				"paddin",
@@ -108,16 +160,8 @@
 				"height"
 			],
 			[
-				"mar",
-				"margin-bottom"
-			],
-			[
 				"text-a",
 				"text-align"
-			],
-			[
-				"bac",
-				"background-color"
 			],
 			[
 				"choic",
@@ -216,10 +260,6 @@
 				"saveChanges"
 			],
 			[
-				"js-s",
-				"js-save-button"
-			],
-			[
 				"list",
 				"listElement"
 			],
@@ -278,10 +318,6 @@
 			[
 				"bor",
 				"border"
-			],
-			[
-				"margi",
-				"margin-right"
 			],
 			[
 				"Snuf",
@@ -356,10 +392,6 @@
 				"padding-left"
 			],
 			[
-				"max",
-				"max-width"
-			],
-			[
 				"s",
 				"style\tAttr"
 			],
@@ -378,10 +410,6 @@
 			[
 				"la",
 				"last_name"
-			],
-			[
-				"font",
-				"font-weight"
 			],
 			[
 				"al",
@@ -408,10 +436,6 @@
 				"align-items"
 			],
 			[
-				"tex",
-				"text-top"
-			],
-			[
 				"head",
 				"header\tTag"
 			],
@@ -431,7 +455,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 3442,
+				"buffer_size": 5901,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -440,8 +464,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 2171,
-				"encoding": "UTF-8",
+				"buffer_size": 2831,
 				"line_ending": "Unix"
 			}
 		},
@@ -449,8 +472,15 @@
 			"file": "main.css",
 			"settings":
 			{
-				"buffer_size": 1890,
-				"encoding": "UTF-8",
+				"buffer_size": 5622,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "float-grid.css",
+			"settings":
+			{
+				"buffer_size": 1304,
 				"line_ending": "Unix"
 			}
 		}
@@ -516,16 +546,34 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/michaelmaio/Thinkful/Unit_3/capstone-1"
+		"/Users/michaelmaio/Thinkful/Unit_3/capstone-1",
+		"/Users/michaelmaio/Desktop/dynamic-marker-placement-test"
 	],
 	"file_history":
 	[
+		"/Users/michaelmaio/Desktop/capstone-1-alts/capstone-1-landing-for-red.html",
+		"/Users/michaelmaio/Desktop/capstone-1-alts/old-style.css",
+		"/Users/michaelmaio/Desktop/capstone-1-alts/red-style.css",
+		"/Users/michaelmaio/Desktop/mapwithsidebar.html",
+		"/Users/michaelmaio/Thinkful/Unit_3/capstone-1/index.html",
+		"/Users/michaelmaio/.profile",
+		"/Users/michaelmaio/Thinkful/npm-test/package.json",
+		"/Users/michaelmaio/Thinkful/Unit_1/Lesson_7/star-wars-responsive-challenge-starter-files/index.html",
+		"/Users/michaelmaio/Thinkful/Unit_1/Lesson_7/star-wars-responsive-challenge-starter-files/styles/float-grid.css",
+		"/Users/michaelmaio/Thinkful/Unit_1/Lesson_7/star-wars-responsive-challenge-starter-files/styles/main.css",
+		"/Users/michaelmaio/Thinkful/Unit_3/capstone-1/styles/normalize.css",
+		"/Users/michaelmaio/Library/Application Support/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
+		"/Users/michaelmaio/Desktop/dynamic-marker-placement-test/main.css",
+		"/Users/michaelmaio/Desktop/dynamic-marker-placement-test/marker-index.html",
+		"/Users/michaelmaio/Desktop/dynamic-marker-placement-test/marker-app.js",
+		"/Users/michaelmaio/Desktop/capstone-1-backup-app.js",
+		"/Users/michaelmaio/Thinkful/Unit_3/capstone-1/app.js",
+		"/Users/michaelmaio/Thinkful/Unit_3/capstone-1/README.md",
 		"/Users/michaelmaio/Thinkful/Unit_3/capstone-1/map.js",
 		"/Users/michaelmaio/Thinkful/Unit_3/thinkful-tube/main.css",
 		"/Users/michaelmaio/Library/Application Support/Sublime Text 3/Packages/User/SublimeServer.sublime-settings",
 		"/Users/michaelmaio/Thinkful/Unit_3/thinkful-tube/app.js",
 		"/Users/michaelmaio/Thinkful/Unit_3/thinkful-tube/index.html",
-		"/Users/michaelmaio/Library/Application Support/Sublime Text 3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc",
 		"/Users/michaelmaio/Thinkful/Unit_3/quiz-challenge/app.js",
 		"/Users/michaelmaio/Thinkful/Unit_3/thinkful-tube/apps.js",
 		"/Users/michaelmaio/Thinkful/Unit_3/quiz-challenge/index.html",
@@ -630,24 +678,7 @@
 		"/Users/michaelmaio/LRTHW/ex25.rb",
 		"/Users/michaelmaio/LRTHW/ex29.rb",
 		"/Users/michaelmaio/LRTHW/ex28.rb",
-		"/Users/michaelmaio/LRTHW/ex26.rb",
-		"/Users/michaelmaio/LRTHW/ex21_return.rb",
-		"/Users/michaelmaio/LRTHW/ex22_review.txt",
-		"/Users/michaelmaio/LRTHW/ex20.rb",
-		"/Users/michaelmaio/LRTHW/new_file.txt",
-		"/Users/michaelmaio/LRTHW/ex19_funcvar.rb",
-		"/Users/michaelmaio/LRTHW/ex18_functions.rb",
-		"/Users/michaelmaio/LRTHW/ex15rdfile.rb",
-		"/Users/michaelmaio/LRTHW/ex16_txt_edit.rb",
-		"/Users/michaelmaio/LRTHW/ex17_copy_file2.rb",
-		"/Users/michaelmaio/LRTHW/ex18_fuctions.rb",
-		"/Users/michaelmaio/LRTHW/test2.txt",
-		"/Users/michaelmaio/LRTHW/test.txt",
-		"/Users/michaelmaio/LRTHW/ex15.text",
-		"/Users/michaelmaio/LRTHW/ex5_str_mods.rb",
-		"/Users/michaelmaio/LRTHW/ex6_str_and_text.rb",
-		"/Users/michaelmaio/LRTHW/ex12_percent_calc.rb",
-		"/Users/michaelmaio/LRTHW/ex14_argv_gets.rb"
+		"/Users/michaelmaio/LRTHW/ex26.rb"
 	],
 	"find":
 	{
@@ -665,6 +696,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"1",
+			"1px",
+			"1",
+			"white",
+			"#f75448",
+			"white",
+			" \n",
+			"#f75448",
+			"}).",
+			"InfoWindow",
+			"data",
+			"json",
+			"JSON",
+			"json",
+			"JSON",
+			"json",
+			"city",
 			"initialize",
 			"city",
 			"item",
@@ -747,25 +795,55 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3442,
+						"buffer_size": 5901,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1020,
-								1020
+								1094,
+								1094
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 438.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2831,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								709,
+								709
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 265.0,
+						"translation.y": 636.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -778,50 +856,20 @@
 			"sheets":
 			[
 				{
-					"buffer": 1,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2171,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1763,
-								1763
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 376.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
 					"buffer": 2,
 					"file": "main.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1890,
+						"buffer_size": 5622,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1725,
-								1725
+								425,
+								425
 							]
 						],
 						"settings":
@@ -831,10 +879,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1634.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "float-grid.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1304,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1283,
+								1283
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 868.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -868,7 +946,7 @@
 		"cols":
 		[
 			0.0,
-			0.570946803302,
+			0.560043260636,
 			1.0
 		],
 		"rows":
@@ -897,7 +975,7 @@
 		[
 			[
 				"",
-				"~/Thinkful/Unit_3/thinkful-tube/index.html"
+				"capstone-1/main.css"
 			],
 			[
 				"ap",
@@ -928,7 +1006,7 @@
 		],
 		"width": 392.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
