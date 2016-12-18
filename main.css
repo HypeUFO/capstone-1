@@ -30,7 +30,6 @@ header {
     height: 50px;
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('images/club-3.jpeg');
-
     margin: 0 auto;
     border-bottom: 3px solid gray;
 }
@@ -132,13 +131,11 @@ input {
     border: 1px solid #981115;
     width: 85%;
     height: 30px;
-
 }
 
 input[type="text"] {
     padding-left: 6px;
 }
-
 
 .search-button {
     margin: 10px;
