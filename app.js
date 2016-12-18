@@ -40,9 +40,8 @@ function getDataFromAPI() {
         dataType: 'jsonp'
     }).then(function(data) {
         $(".loader").hide("fast");
-        // Log Data
-        console.log(data.events);
 
+        // Log Data
         initialize(data);
 
         $.each(data.events.event, function(i, item) {
@@ -99,7 +98,6 @@ function getOutput(item) {
 // Build Map
 function displayMarkers(data) {
     var markersData = data.events.event;
-    console.log(markersData);
 
     var bounds = new google.maps.LatLngBounds();
 
