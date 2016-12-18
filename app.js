@@ -1,11 +1,11 @@
-
 // Initialize Map
+//var markersData = [];
 
-var geocoder;
-var map;
+//var geocoder;
+//var map;
 
 function initMap() {
-    geocoder = new google.maps.Geocoder();
+    //geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(-34.397, 150.644);
     var mapOptions = {
         zoom: 0,
@@ -21,7 +21,7 @@ function getDataFromAPI() {
     $(".loader").show();
     // Clear Results
     $('.js-search-results').html('');
-    $('.js-buttons').html('');
+    $('#map').html('');
 
     // Get Form Input
     var l = $('#js-city').val() + " " + $('#js-state').val();
@@ -46,18 +46,22 @@ function getDataFromAPI() {
         $(".loader").hide("fast");
         // Log Data
         console.log(data.events);
+        initialize(data);
 
         $.each(data.events.event, function(i, item) {
+            //markersData.push(item);
+            
             // Get Output
             var output = getOutput(item);
-            var map = buildMap(item);
-
+ 
             // Display Results
             $('.js-search-results').append(output);
-            $('#map').html(map);
-
 
         });
+        //console.log(markersData);
+        //initialize(data);
+        //var buildMap = initialize(data);
+        //$('#map').html(buildMap);
     })
 }
 
@@ -107,63 +111,101 @@ function getOutput(item) {
 
 // Build Map
 
-function buildMap(item) {
-    // Creating a global infoWindow object that will be reused by all markers
-    var infoWindow = new google.maps.InfoWindow();
+function displayMarkers(data){
+    var markersData = data.events.event;
+    console.log(markersData);
 
-    var address = item.venue_address + " " + item.city_name + " " + item.region_abbr;
+   var bounds = new google.maps.LatLngBounds();
 
-    var wait = false;
+   // For loop that runs through the info on markersData making it possible to createMarker function to create the markers
+   for (var i = 0; i < markersData.length; i++){
 
-    if (geocoder) {
-      while (wait) { /* Just wait. This is a nasty way to do it, find a more elaborate one that won't "freeze" the browser. */ };
+    var venueURL = markersData[i].venue_url;
+    var eventLat = markersData[i].latitude;
+    var eventLng = markersData[i].longitude;
+    var description = markersData[i].description;
+    var eventStart = convert(markersData[i].start_time);
+    var venueName = markersData[i].venue_name;
+    var postalCode = markersData[i].postal_code;
 
-    geocoder.geocode({ 'address': address }, function(results, status) {
-        if (status == 'OK') {
-            map.setCenter(results[0].geometry.location);
-            map.setZoom(9);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
-        } /* When geocoding "fails", see if it was because of over quota error: */
-        else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) { 
-  wait = true;
-  setTimeout("wait = false", 250);
 
-       } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-        }
-        (function(marker, item) {
-            
+      var latlng = new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude);
+      var title = markersData[i].title;
+      var venueAddress = markersData[i].venue_address + ", " + markersData[i].city_name + " " + markersData[i].region_abbr;
 
-            clicked = false;
-            // Attaching a mouseover event to the current marker
-            google.maps.event.addListener(marker, "mouseover", function(e) {
+      
+
+      createMarker(latlng, title, venueName, venueAddress, postalCode, description, venueURL);
+
+      bounds.extend(latlng); 
+   }
+
+   map.fitBounds(bounds);
+}
+
+
+function createMarker(latlng, title, venueName, venueAddress, postalCode, description,  venueURL){
+   var marker = new google.maps.Marker({
+      map: map,
+      position: latlng,
+      title: title,
+      animation: google.maps.Animation.DROP
+   });
+
+
+
+var clicked = false;
+
+
+                // Attaching a mouseover event to the current marker
+                google.maps.event.addListener(marker, "mouseover", function(e) {
+                    if (!clicked) {
+                        var iwContent = `<div><strong>${title}</strong><br><strong>@${venueName}</strong><br>${venueAddress} ${postalCode}</div>`;
+                        infoWindow.setContent(iwContent);
+                        infoWindow.open(map, marker);
+                    }
+                });
+            google.maps.event.addListener(marker, "mouseout", function(e) {
                 if (!clicked) {
-                    infoWindow.setContent(`<div><strong>${item.title}</strong><br><strong>@${item.venue_name}</strong><br>${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}</div>`);
-                    infoWindow.open(map, marker);
+                    infoWindow.close();
                 }
             });
-        })(marker, item);
-        google.maps.event.addListener(marker, "mouseout", function(e) {
-            if (!clicked) {
-                infoWindow.close();
-            }
-        });
-        // Attaching a click event to the current marker
-        google.maps.event.addListener(marker, "click", function(e) {
-            clicked = true;
-            infoWindow.setContent(`<div><strong>${item.title}</strong><br><a href="${item.venue_url}"><strong>@${item.venue_name}</strong></a><br><a href="http://maps.google.com/?q=${item.venue_address}, ${item.city_name} ${item.region_abbr}">${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}</a><br>${item.description}</div>`);
-            infoWindow.open(map, marker);
-        });
-        (marker, item);
-        google.maps.event.addListener(infoWindow, 'closeclick', function(e) {
-            clicked = false;
-        })
-    });
+            // Attaching a click event to the current marker
+            google.maps.event.addListener(marker, "click", function(e) {
+                clicked = true;
+                var iwContent = `<div><strong>${title}</strong><br><a href="${venueURL}"><strong>@${venueName}</strong></a><br><a href="http://maps.google.com/?q=${venueAddress}">${venueAddress}</a><br>${description}</div>`;
+            infoWindow.setContent(iwContent);
+                infoWindow.open(map, marker);
+            });
+            google.maps.event.addListener(infoWindow, 'closeclick', function(e) {
+                clicked = false;
+            })
+
+
 }
+
+function initialize(data) {
+   var mapOptions = {
+      center: new google.maps.LatLng(40.601203,-8.668173),
+      zoom: 9,
+      mapTypeId: 'roadmap',
+   };
+
+   map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+   // a new Info Window is created
+   infoWindow = new google.maps.InfoWindow();
+
+   // Event that closes the InfoWindow with a click on the map
+   google.maps.event.addListener(map, 'click', function() {
+      infoWindow.close();
+   });
+
+   // Finally displayMarkers() function is called to begin the markers creation
+   displayMarkers(data);
 }
+
+
 
 
 // Show/Hide Search Form
@@ -195,12 +237,12 @@ function handleMap() {
 
 $('document').ready(function() {
     $(window).load(function() {
-            $(".loader").fadeOut("slow");
-        })
+        $(".loader").fadeOut("slow");
+    })
     $('.js-search-button').on('click', function(event) {
-      event.preventDefault();
-      getDataFromAPI();
+        event.preventDefault();
+        getDataFromAPI();
     }).then(handleSearchToggle()).then(handleMap());
 
-   
+
 })
