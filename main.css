@@ -268,6 +268,15 @@ input[type="text"] {
         font-size: 55px;
         letter-spacing: 2px;
     }
+
+.logo {
+    margin-left: 10px;
+}
+
+.new-search-button {
+    margin-right: 10px;
+}
+
     #map {
         padding-top: 0px;
         z-index: 1;
