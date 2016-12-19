@@ -215,5 +215,7 @@ $('document').ready(function() {
     $('.js-search-button').on('click', function(event) {
         event.preventDefault();
         getDataFromAPI();
-    }).then(handleSearchToggle()).then(handleMap());
+    })
+    handleSearchToggle();
+    handleMap();
 })

@@ -483,16 +483,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 5941,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "// Initialize Map\n\nvar geocoder;\nvar map;\n\nfunction initMap() {\n    geocoder = new google.maps.Geocoder();\n    var latlng = new google.maps.LatLng(-34.397, 150.644);\n    var mapOptions = {\n        zoom: 0,\n        center: latlng\n    }\n    map = new google.maps.Map(document.getElementById('map'), mapOptions);\n}\n\n\n// Get Data From Eventful API\n\nfunction getDataFromAPI() {\n    $(\".loader\").show();\n    // Clear Results\n    $('.js-search-results').html('');\n    $('.js-buttons').html('');\n\n    // Get Form Input\n    var l = $('#js-city').val() + \" \" + $('#js-state').val();\n\n    // Run GET Request on API\n    $.ajax({\n        url: \"https://api.eventful.com/json/events/search\",\n        type: \"GET\",\n        data: {\n            app_key: \"tFtdmL78mXSFFmd6\",\n            q: \"music\",\n            l: l,\n            t: \"Today\",\n            page_size: 25,\n            sort_order: \"popularity\",\n            category: \"music, concert, nightlife\"\n\n        },\n        crossDomain: true,\n        dataType: 'jsonp'\n    }).then(function(data) {\n        $(\".loader\").hide(\"fast\");\n        // Log Data\n        console.log(data.events);\n\n        $.each(data.events.event, function(i, item) {\n            // Get Output\n            var output = getOutput(item);\n            var map = buildMap(item);\n\n            // Display Results\n            $('.js-search-results').append(output);\n            $('#map').append(map);\n\n\n        });\n    })\n}\n\nfunction convert(input) {\n    return moment(input, 'HH:mm:ss').format('h:mm A');\n}\n\n\n//Render Functions\n\n\n//Build Output\n\nfunction getOutput(item) {\n    var eventID = item.id;\n    var title = item.title;\n    var eventURL = item.url;\n    var eventImage = item.image.medium.url;\n    var description = item.description;\n    var eventStart = convert(item.start_time);\n    var venueName = item.venue_name;\n    var venueAddress = item.venue_address + \", \" + item.city_name + \" \" + item.region_abbr;\n    var venueURL = item.venue_url;\n    var eventLat = item.latitude;\n    var eventLng = item.longitude;\n\n\n    // Build Output String\n\n    var output = `<li>\n  <div class=\"list-left\">\n  <img src=\"${eventImage}\" alt=\"Event Image\">\n  </div>\n  <div class=\"list-right\">\n  <p>${title}<br>\n  <a href=\"${venueURL}\">${venueName}</a><br>\n  <a href=\"http://maps.google.com/?q=${venueAddress}\">${venueAddress}</a><br>\n  ${eventStart}\n  </p>\n  </div>\n  </li>\n  <div class=\"clearfix\"></div>`;\n\n    return output;\n}\n\n\n// Build Map\n\nfunction buildMap(item) {\n    // Creating a global infoWindow object that will be reused by all markers\n    var infoWindow = new google.maps.InfoWindow();\n\n    var address = item.venue_address + \" \" + item.city_name + \" \" + item.region_abbr;\n\n    var wait = false;\n\n    if (geocoder) {\n        while (wait) { /* Just wait. This is a nasty way to do it, find a more elaborate one that won't \"freeze\" the browser. */ };\n\n        geocoder.geocode({ 'address': address }, function(results, status) {\n            if (status == 'OK') {\n                map.setCenter(results[0].geometry.location);\n                map.setZoom(10);\n                var marker = new google.maps.Marker({\n                    map: map,\n                    position: results[0].geometry.location\n                });\n            } /* When geocoding \"fails\", see if it was because of over quota error: */\n            else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {\n                wait = true;\n                setTimeout(\"wait = false\", 250);\n\n            } else {\n                alert('Geocode was not successful for the following reason: ' + status);\n            }\n            (function(marker, item) {\n\n                clicked = false;\n\n                // Attaching a mouseover event to the current marker\n                google.maps.event.addListener(marker, \"mouseover\", function(e) {\n                    if (!clicked) {\n                        infoWindow.setContent(`<div><strong>${item.title}</strong><br><strong>@${item.venue_name}</strong><br>${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}</div>`);\n                        infoWindow.open(map, marker);\n                    }\n                });\n            })(marker, item);\n            google.maps.event.addListener(marker, \"mouseout\", function(e) {\n                if (!clicked) {\n                    infoWindow.close();\n                }\n            });\n            // Attaching a click event to the current marker\n            google.maps.event.addListener(marker, \"click\", function(e) {\n                clicked = true;\n                infoWindow.setContent(`<div><strong>${item.title}</strong><br><a href=\"${item.venue_url}\"><strong>@${item.venue_name}</strong></a><br><a href=\"http://maps.google.com/?q=${item.venue_address}, ${item.city_name} ${item.region_abbr}\">${item.venue_address}, ${item.city_name} ${item.region_abbr} ${item.postal_code}</a><br>${item.description}</div>`);\n                infoWindow.open(map, marker);\n            });\n            (marker, item);\n            google.maps.event.addListener(infoWindow, 'closeclick', function(e) {\n                clicked = false;\n            })\n        });\n    }\n}\n\n\n// Show/Hide Search Form\n\nfunction handleSearchToggle() {\n    $('.js-search-button').on('click', function() {\n        $('.js-search-results').show(500);\n        $('.search-section').hide();\n        $('.new-search').show(500);\n        $('.new-search-button').show(500);\n        $('.logo').show(500);\n        $('.landing').hide(500);\n    });\n    $('.js-new-search-button').on('click', function() {\n        $('.new-search-button').hide(500);\n        $('.search-section').show(500);\n        $('.landing').show(500);\n    });\n\n}\n\nfunction handleMap() {\n    $('.js-search-button').on('click', function() {\n        $('#map').show();\n    });\n}\n\n// Execute\n\n$('document').ready(function() {\n    $(window).load(function() {\n        $(\".loader\").fadeOut(\"slow\");\n    })\n    $('.js-search-button').on('click', function(event) {\n        event.preventDefault();\n        getDataFromAPI();\n    }).then(handleSearchToggle()).then(handleMap());\n\n\n})\n",
-			"settings":
-			{
-				"buffer_size": 6074,
+				"buffer_size": 5877,
 				"line_ending": "Unix"
 			}
 		},
@@ -501,7 +492,6 @@
 			"settings":
 			{
 				"buffer_size": 2501,
-				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -509,17 +499,7 @@
 			"file": "main.css",
 			"settings":
 			{
-				"buffer_size": 4997,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "float-grid.css",
-			"settings":
-			{
-				"buffer_size": 1385,
-				"encoding": "UTF-8",
+				"buffer_size": 5080,
 				"line_ending": "Unix"
 			}
 		}
@@ -583,13 +563,11 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/michaelmaio/Thinkful/Unit_3/capstone-1",
-		"/Users/michaelmaio/Desktop/dynamic-marker-placement-test"
-	],
 	"file_history":
 	[
+		"/Users/michaelmaio/Thinkful/front-end-development/Unit_3/capstone-1/float-grid.css",
+		"/Users/michaelmaio/node-nodemon-demo/server.js",
+		"/Users/michaelmaio/.bash_profile",
 		"/Users/michaelmaio/Desktop/capstone-1-alts/capstone-1-landing-for-red.html",
 		"/Users/michaelmaio/Desktop/capstone-1-alts/old-style.css",
 		"/Users/michaelmaio/Desktop/capstone-1-alts/red-style.css",
@@ -714,10 +692,7 @@
 		"/Users/michaelmaio/LRTHW/ex33_while.rb",
 		"/Users/michaelmaio/LRTHW/ex30_if_else.rb",
 		"/Users/michaelmaio/LRTHW/ex24.rb",
-		"/Users/michaelmaio/LRTHW/ex25.rb",
-		"/Users/michaelmaio/LRTHW/ex29.rb",
-		"/Users/michaelmaio/LRTHW/ex28.rb",
-		"/Users/michaelmaio/LRTHW/ex26.rb"
+		"/Users/michaelmaio/LRTHW/ex25.rb"
 	],
 	"find":
 	{
@@ -854,15 +829,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5941,
+						"buffer_size": 5877,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5937,
-								5937
+								0,
+								0
 							]
 						],
 						"settings":
@@ -875,46 +850,17 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6074,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								488,
-								488
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "index.html",
 					"semi_transient": false,
 					"settings":
@@ -926,8 +872,8 @@
 						"selection":
 						[
 							[
-								1616,
-								1616
+								0,
+								0
 							]
 						],
 						"settings":
@@ -937,63 +883,33 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 460.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "main.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4997,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								299,
-								299
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 586.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "float-grid.css",
+					"buffer": 2,
+					"file": "main.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1385,
+						"buffer_size": 5080,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1283,
-								1283
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/CSS/CSS.sublime-syntax",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -1034,7 +950,7 @@
 		"cols":
 		[
 			0.0,
-			0.537011644425,
+			0.5,
 			1.0
 		],
 		"rows":
