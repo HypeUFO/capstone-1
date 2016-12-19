@@ -483,7 +483,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 5877,
+				"buffer_size": 5862,
 				"line_ending": "Unix"
 			}
 		},
@@ -491,7 +491,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 2501,
+				"buffer_size": 2261,
 				"line_ending": "Unix"
 			}
 		},
@@ -499,7 +499,7 @@
 			"file": "main.css",
 			"settings":
 			{
-				"buffer_size": 5080,
+				"buffer_size": 4602,
 				"line_ending": "Unix"
 			}
 		}
@@ -565,6 +565,15 @@
 	},
 	"file_history":
 	[
+		"/Users/michaelmaio/Thinkful/front-end-development/Unit_3/capstone-1/index.html",
+		"/Users/michaelmaio/Thinkful/server-side-development/node-shopping-list-v4/server.js",
+		"/Users/michaelmaio/Thinkful/server-side-development/node-shopping-list-v4/models.js",
+		"/Users/michaelmaio/Thinkful/server-side-development/node-shopping-list-v3/server.js",
+		"/Users/michaelmaio/Thinkful/server-side-development/node-shopping-list-v2/models.js",
+		"/Users/michaelmaio/Thinkful/server-side-development/node-shopping-list-v2/server.js",
+		"/Users/michaelmaio/Thinkful/server-side-development/node-shopping-list-v1/server.js",
+		"/Users/michaelmaio/Thinkful/server-side-development/node-shopping-list-v1/models.js",
+		"/Users/michaelmaio/Thinkful/server-side-development/node-shopping-list-v1/.gitignore",
 		"/Users/michaelmaio/Thinkful/front-end-development/Unit_3/capstone-1/float-grid.css",
 		"/Users/michaelmaio/node-nodemon-demo/server.js",
 		"/Users/michaelmaio/.bash_profile",
@@ -683,16 +692,7 @@
 		"/Users/michaelmaio/LRTHW/ex39_test2.rb",
 		"/Users/michaelmaio/LRTHW/dict.rb",
 		"/Users/michaelmaio/LRTHW/ex38_things_to_arrays.rb",
-		"/Users/michaelmaio/LRTHW/ex39_hash_module.rb",
-		"/Users/michaelmaio/LRTHW/ex36_designing_debugging.rb",
-		"/Users/michaelmaio/LRTHW/ex37.rb",
-		"/Users/michaelmaio/LRTHW/ex35_branches_functions.rb",
-		"/Users/michaelmaio/LRTHW/ex32_loops_arrays.rb",
-		"/Users/michaelmaio/LRTHW/ex31_decisions.rb",
-		"/Users/michaelmaio/LRTHW/ex33_while.rb",
-		"/Users/michaelmaio/LRTHW/ex30_if_else.rb",
-		"/Users/michaelmaio/LRTHW/ex24.rb",
-		"/Users/michaelmaio/LRTHW/ex25.rb"
+		"/Users/michaelmaio/LRTHW/ex39_hash_module.rb"
 	],
 	"find":
 	{
@@ -710,6 +710,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"item",
+			"ShoppingList",
 			"markersData",
 			"address, city, state",
 			"item",
@@ -829,7 +831,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5877,
+						"buffer_size": 5862,
 						"regions":
 						{
 						},
@@ -850,7 +852,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -865,7 +867,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2501,
+						"buffer_size": 2261,
 						"regions":
 						{
 						},
@@ -895,7 +897,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5080,
+						"buffer_size": 4602,
 						"regions":
 						{
 						},
@@ -916,7 +918,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -965,7 +967,7 @@
 		"height": 0.0
 	},
 	"pinned_build_system": "",
-	"project": "capstone-1.sublime-project",
+	"project": "whats-poppin.sublime-project",
 	"replace":
 	{
 		"height": 46.0
