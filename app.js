@@ -116,13 +116,10 @@ function displayMarkers(data) {
         var title = markersData[i].title;
         var venueAddress = markersData[i].venue_address + ", " + markersData[i].city_name + " " + markersData[i].region_abbr;
 
-
-
         createMarker(latlng, title, venueName, venueAddress, postalCode, description, venueURL);
 
         bounds.extend(latlng);
     }
-
     map.fitBounds(bounds);
 }
 
@@ -134,8 +131,6 @@ function createMarker(latlng, title, venueName, venueAddress, postalCode, descri
         title: title,
         animation: google.maps.Animation.DROP
     });
-
-
 
     var clicked = false;
 
@@ -161,8 +156,6 @@ function createMarker(latlng, title, venueName, venueAddress, postalCode, descri
     google.maps.event.addListener(infoWindow, 'closeclick', function(e) {
         clicked = false;
     })
-
-
 }
 
 function initialize(data) {
@@ -198,7 +191,6 @@ function handleSearchToggle() {
         $('.search-section').show(500);
         $('.landing').show(500);
     });
-
 }
 
 function handleMap() {
