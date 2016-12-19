@@ -181,7 +181,7 @@ function handleSearchToggle() {
     $('.js-search-button').on('click', function() {
         $('.js-search-results').show(500);
         $('.search-section').hide();
-        $('.new-search').show(500);
+        $('.banner').show(500);
         $('.new-search-button').show(500);
         $('.logo').show(500);
         $('.landing').hide(500);
