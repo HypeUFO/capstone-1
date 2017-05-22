@@ -86,8 +86,9 @@ function getOutput(item) {
   <img src="${eventImage}" alt="Event Image">
   </div>
   <div class="list-right">
-  <p>${title}<br>
-  <a href="${venueURL}" target="_blank">${venueName}</a><br>
+  <p>
+  <a href="${eventURL}" target="_blank">${title}</a><br>
+  ${venueName}<br>
   <a href="http://maps.google.com/?q=${venueAddress}" target="_blank">${venueAddress}</a><br>
   ${eventStart}
   </p>
