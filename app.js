@@ -20,7 +20,7 @@ function getDataFromAPI() {
     $('#map').html('');
 
     // Get Form Input
-    var l = $('#js-city').val() + " " + $('#js-state').val();
+    var l = $('#js-city').val(); //+ " " + $('#js-state').val();
 
     // Run GET Request on API
     $.ajax({
@@ -42,18 +42,21 @@ function getDataFromAPI() {
         $(".loader").hide("fast");
 
         // Log Data
+        console.log(data);
         initialize(data);
 
-        $.each(data.events.event, function(i, item) {
+        // $.each(data.events.event, function(i, item) {
+            for (let i=0; i < data.events.event.length; i++) {
 
             // Get Output
-            var output = getOutput(item);
+            var output = getOutput(data.events.event[i]);
 
             // Display Results
             $('.js-search-results').append(output);
+            }
 
         });
-    })
+    //})
 }
 
 function convert(input) {
@@ -68,7 +71,7 @@ function getOutput(item) {
     var eventID = item.id;
     var title = item.title;
     var eventURL = item.url;
-    var eventImage = item.image.medium.url;
+    var eventImage = item.image ? item.image.medium.url : '';
     var description = item.description;
     var eventStart = convert(item.start_time);
     var venueName = item.venue_name;
@@ -84,8 +87,8 @@ function getOutput(item) {
   </div>
   <div class="list-right">
   <p>${title}<br>
-  <a href="${venueURL}">${venueName}</a><br>
-  <a href="http://maps.google.com/?q=${venueAddress}">${venueAddress}</a><br>
+  <a href="${venueURL}" target="_blank">${venueName}</a><br>
+  <a href="http://maps.google.com/?q=${venueAddress}" target="_blank">${venueAddress}</a><br>
   ${eventStart}
   </p>
   </div>
