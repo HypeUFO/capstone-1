@@ -41,8 +41,6 @@ function getDataFromAPI() {
     }).then(function(data) {
         $(".loader").hide("fast");
 
-        // Log Data
-        console.log(data);
         initialize(data);
 
         // $.each(data.events.event, function(i, item) {
